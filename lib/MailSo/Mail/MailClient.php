@@ -1264,8 +1264,7 @@ class MailClient
 							if (0 < $iDateStampFrom)
 							{
 								$aCriteriasResult[] = 'SINCE';
-								$aCriteriasResult[] = \gmdate('j-M-Y', $iTimeFilter > $iDateStampFrom ?
-									$iDateStampFrom : $iTimeFilter);
+								$aCriteriasResult[] = \gmdate('j-M-Y', $iDateStampFrom);
 
 								if (0 < $iTimeFilter && $iTimeFilter > $iDateStampFrom)
 								{
