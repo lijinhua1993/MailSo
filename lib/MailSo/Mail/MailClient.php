@@ -954,7 +954,7 @@ class MailClient
 
 		$aCache = array();
 
-		$sReg = 'e?mail|from|to|subject|has|is|date|text|body|size|larger|bigger|smaller|maxsize|minsize';
+		$sReg = 'e?mail|from|to|subject|has|is|date|text|body|size|larger|bigger|smaller|maxsize|minsize|keyword';
 
 		$sSearch = \trim(\preg_replace('/[\s]+/', ' ', $sSearch));
 		$sSearch = \trim(\preg_replace('/('.$sReg.'): /i', '\\1:', $sSearch));
@@ -1030,6 +1030,7 @@ class MailClient
 						case 'MAXSIZE':
 						case 'MINSIZE':
 						case 'DATE':
+                        case 'KEYWORD':
 							if ('MAIL' === $sName)
 							{
 								$sName = 'EMAIL';
@@ -1224,6 +1225,10 @@ class MailClient
 							$aCriteriasResult[] = 'LARGER';
 							$aCriteriasResult[] =  $this->parseFriendlySize($sRawValue);
 							break;
+                        case 'KEYWORD':
+                            $aCriteriasResult[] = 'KEYWORD';
+                            $aCriteriasResult[] =  $sValue;
+                            break;
 						case 'SMALLER':
 							$aCriteriasResult[] = 'SMALLER';
 							$aCriteriasResult[] =  $this->parseFriendlySize($sRawValue);
